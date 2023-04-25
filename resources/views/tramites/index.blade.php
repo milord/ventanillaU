@@ -13,7 +13,7 @@
                     {{ __("Todos los trámites") }}
 
                     <x-link 
-                        :href="route('tramites.create')"
+                        :href="route('justificantes.create')"
                     >
                         Crear justificante
                     </x-link>

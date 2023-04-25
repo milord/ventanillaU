@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JustificanteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TramiteController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/tramites', [TramiteController::class, 'index'])->middleware(['auth', 'verified'])->name('tramites.index');
-Route::get('/tramites/create', [TramiteController::class, 'create'])->middleware(['auth', 'verified'])->name('tramites.create');
+/*Route::get('/tramites/create', [TramiteController::class, 'create'])->middleware(['auth', 'verified'])->name('tramites.create');*/
+
+Route::get('/justificantes', [JustificanteController::class, 'index'])->middleware(['auth', 'verified'])->name('justificantes.index');
+Route::get('/justificantes/create', [JustificanteController::class, 'create'])->middleware(['auth', 'verified'])->name('justificantes.create');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
