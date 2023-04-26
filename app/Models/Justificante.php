@@ -9,6 +9,8 @@ class Justificante extends Model
 {
     use HasFactory;
 
+    protected $dates = ['inicia_ausencia', 'termina_ausencia'];
+
     protected $fillable = [
         'nombre_alumno',
         'nombre_tutor',

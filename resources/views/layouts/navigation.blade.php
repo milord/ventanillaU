@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('tramites.index')" :active="request()->routeIs('tramites.index')">
                         {{ __('Trámites') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('justificantes.index')" :active="request()->routeIs('justificantes.index')">
+                        {{ __('Justificantes') }}
+                    </x-nav-link>
                 </div>
                 
             </div>

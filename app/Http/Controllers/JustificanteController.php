@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Justificante;
 use Illuminate\Http\Request;
 
 class JustificanteController extends Controller
@@ -41,9 +42,12 @@ class JustificanteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Justificante $justificante)
     {
         //
+        return view('justificantes.edit', [
+            'justificante' => $justificante
+        ]);
     }
 
     /**
