@@ -1,16 +1,50 @@
-<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearJustificante'>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearJustificante' novalidate>
     <div>
-        <x-input-label for="nombre" :value="__('Nombre del alumno(a):')" />
+        <x-input-label for="nombre_alumno" :value="__('Nombre del alumno(a):')" />
         <x-text-input 
-            id="nombre"
+            id="nombre_alumno"
             class="block mt-1 w-full"
             type="text"
-            wire:model="nombre"
-            :value="old('nombre')"
+            wire:model="nombre_alumno"
+            :value="old('nombre_alumno')"
             placeholder="Nombre completo del alumno(a)"
         />
 
-        @error('nombre')
+        @error('nombre_alumno')
+            {{$message}}
+        @enderror
+    </div>
+
+    <div>
+        <x-input-label for="nombre_tutor" :value="__('Nombre del tutor:')" />
+        <x-text-input 
+            id="nombre_tutor"
+            class="block mt-1 w-full"
+            type="text"
+            wire:model="nombre_tutor"
+            :value="old('nombre_tutor')"
+            placeholder="Nombre completo del tutor"
+        />
+
+        @error('nombre_tutor')
+            {{$message}}
+        @enderror
+    </div>
+
+    <div>
+        <x-input-label for="telefono_tutor" :value="__('Teléfono del tutor:')" />
+        <x-text-input 
+            id="telefono_tutor"
+            class="block mt-1 w-full"
+            type="tel"
+            wire:model="telefono_tutor"
+            :value="old('telefono_tutor')"
+            placeholder="1234567890"
+            pattern="[0-9]{10}"
+            maxlength="10"
+        />
+
+        @error('telefono_tutor')
             {{$message}}
         @enderror
     </div>

@@ -1,9 +1,9 @@
 # Ventanilla única
 
-## ¿Qué hace
+## ¿Qué hace?
 Gestiona los trámites que se registran en un plantel educativo
 
-## ¿Para qué sirve
+## ¿Para qué sirve?
 Llevar control de cada uno de los trámites que se solicitan en un plantel educativo
 
 1. Constancias de estudios
@@ -20,7 +20,7 @@ Llevar control de cada uno de los trámites que se solicitan en un plantel educa
 12. Titulación y servicio social
 13. Descarga de calificaciones parciales
 
-## ¿Te interesa el proyecto
+## ¿Te interesa el proyecto?
 Siempre estamos en busca de personas que quieran aportar al proyecto, aceptamos personas que están iniciando o tenga un nivel avanzado en programación.
 
 ## Estos son los canales oficiales donde puedes conseguir ayuda

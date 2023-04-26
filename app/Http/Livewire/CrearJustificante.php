@@ -6,12 +6,15 @@ use App\Models\Especialidade;
 use App\Models\Grupo;
 use App\Models\Semestre;
 use App\Models\Turno;
+use App\Models\Justificante;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class CrearJustificante extends Component
 {
-    public $nombre;
+    public $nombre_alumno;
+    public $nombre_tutor;
+    public $telefono_tutor;
     public $semestre;
     public $grupo;
     public $especialidade;
@@ -25,7 +28,9 @@ class CrearJustificante extends Component
     use WithFileUploads;
 
     protected $rules = [
-        'nombre' => 'required|string',
+        'nombre_alumno' => 'required|string',
+        'nombre_tutor' => 'required|string',
+        'telefono_tutor' => 'required',
         'semestre' => 'required|string',
         'grupo' => 'required|string',
         'especialidade' => 'required|string',
@@ -43,15 +48,32 @@ class CrearJustificante extends Component
 
         //Almacenar imagen
         $imagen = $this->imagen->store('public/justificantes');
-        $nombre_imagen = str_replace('public/justificantes/', '', $imagen);
+        $datos['imagen'] = str_replace('public/justificantes/', '', $imagen);
 
         //dd($nombre_imagen);
 
         //Crear justificante
+        Justificante::create([
+            'nombre_alumno'=> $datos['nombre_alumno'],
+            'nombre_tutor' => $datos['nombre_tutor'],
+            'telefono_tutor' => $datos['telefono_tutor'],
+            'semestre_id'=> $datos['semestre'],
+            'grupo_id'=> $datos['grupo'],
+            'especialidade_id'=> $datos['especialidade'],
+            'turno_id'=> $datos['turno'],
+            'dias_laborales'=> $datos['dias_laborales'],
+            'inicia_ausencia'=> $datos['inicia_ausencia'],
+            'termina_ausencia'=> $datos['termina_ausencia'],
+            'motivo_inasistencia'=> $datos['motivo_inasistencia'],
+            'imagen'=> $datos['imagen'],
+            'user_id' => auth()->user()->id
+        ]);
 
         //Crear un mensaje
+        session()->flash('mensaje', 'El justificante se ha creado con éxito');
 
         //Redireccionar al usuario
+        return redirect()->route('dashboard');
 
     }
 
@@ -68,7 +90,7 @@ class CrearJustificante extends Component
             'semestres' => $semestres,
             'grupos' => $grupos,
             'especialidades' => $especialidades,
-            'turnos' => $turnos,
+            'turnos' => $turnos
             
         ]);
     }
