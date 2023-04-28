@@ -1,4 +1,4 @@
-<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarJustificante' novalidate>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarJustificante'>
     <div>
         <x-input-label for="nombre_alumno" :value="__('Nombre del alumno(a):')" />
         <x-text-input 
@@ -194,7 +194,7 @@
     <div>
         <x-input-label for="imagen" :value="__('Imagen  :')" />
         <input type="file"
-            wire:model="imagen"
+            wire:model="imagen_nueva"
             id="imagen"
             class="block mt-1 w-full"
             accept="image/*"
@@ -205,21 +205,21 @@
 
             <img src="{{ asset('storage/justificantes/' . $imagen) }}" alt="{{ 'Imagen Justificante ' . $nombre_alumno }}">
         </div>
-{{-- 
-        <div class="my-5">
-            @if ($imagen)
-                Receta médica:
-                <img src="{{ $imagen->temporaryURL() }}">
+
+        <div class="my-5" w-80>
+            @if ($imagen_nueva)
+                Imagen nueva:
+                <img src="{{ $imagen_nueva->temporaryURL() }}">
             @endif
         </div>
- --}}
-        @error('imagen')
+
+        @error('imagen_nueva')
             {{$message}}
         @enderror
 
     </div>
 
     <x-primary-button>
-        Guadar cambios
+        Guardar cambios
     </x-primary-button>
 </form>
