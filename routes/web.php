@@ -30,6 +30,7 @@ Route::get('/tramites', [TramiteController::class, 'index'])->middleware(['auth'
 Route::get('/justificantes', [JustificanteController::class, 'index'])->middleware(['auth', 'verified'])->name('justificantes.index');
 Route::get('/justificantes/create', [JustificanteController::class, 'create'])->middleware(['auth', 'verified'])->name('justificantes.create');
 Route::get('/justificantes/{justificante}/edit', [JustificanteController::class, 'edit'])->middleware(['auth', 'verified'])->name('justificantes.edit');
+Route::get('/justificantes/{justificante}/show', [JustificanteController::class, 'show'])->middleware(['auth', 'verified'])->name('justificantes.show');
 
 
 Route::middleware('auth')->group(function () {

@@ -34,9 +34,11 @@ class JustificanteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Justificante $justificante)
     {
-        //
+        return view('justificantes.show', [
+            'justificante' => $justificante
+        ]);
     }
 
     /**
@@ -55,19 +57,4 @@ class JustificanteController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
