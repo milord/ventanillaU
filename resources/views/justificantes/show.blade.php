@@ -1,8 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Justificante de: {{ $justificante->nombre_alumno }}
-        </h2>
+        <div class="md:flex md:justify-between md:items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                Justificante de: {{ $justificante->nombre_alumno }}
+            </h2>
+            <a                        
+                href="{{ route('justificante.report', $justificante->id) }}"
+                class="bg-green-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase"
+            >Imprimir</a>
+        </div>
     </x-slot>
 
     <div class="py-12">

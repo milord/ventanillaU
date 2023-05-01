@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Justificante;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class JustificanteController extends Controller
 {
@@ -39,6 +40,14 @@ class JustificanteController extends Controller
         return view('justificantes.show', [
             'justificante' => $justificante
         ]);
+    }
+
+    public function report($id)
+    {
+        $justificante = Justificante::find($id);
+        $pdf = PDF::loadview('justificantes.show', ['justificante'=>$justificante]);
+        return $pdf->download('justificante.pdf');
+        
     }
 
     /**

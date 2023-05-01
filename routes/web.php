@@ -31,6 +31,8 @@ Route::get('/justificantes', [JustificanteController::class, 'index'])->middlewa
 Route::get('/justificantes/create', [JustificanteController::class, 'create'])->middleware(['auth', 'verified'])->name('justificantes.create');
 Route::get('/justificantes/{justificante}/edit', [JustificanteController::class, 'edit'])->middleware(['auth', 'verified'])->name('justificantes.edit');
 Route::get('/justificantes/{justificante}/show', [JustificanteController::class, 'show'])->middleware(['auth', 'verified'])->name('justificantes.show');
+Route::get('/justificantes/{justificante}/report', [JustificanteController::class, 'report'])->middleware(['auth', 'verified'])->name('justificante.report');
+
 
 
 Route::middleware('auth')->group(function () {

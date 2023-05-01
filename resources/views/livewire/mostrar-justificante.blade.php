@@ -61,9 +61,9 @@
     </div>
 
     <div class="md:grid md:grid-cols-6 gap-4">
-        <div class="md:col-span-2">
-            <img src="{{ asset('storage/justificantes/' . $justificante->imagen ) }}" alt="{{'Imagen justificante ' . $justificante->nombre_alumno}}">
-        </div>
+        {{-- <div class="md:col-span-2">
+            <img src="{{ asset('storage/justificantes/' . $justificante->imagen  ) }}" alt="{{'Imagen justificante ' . $justificante->nombre_alumno}}">
+        </div> --}}
 
         <div class="md:col-span-4">
             <h2 class="text-2xl font-bold mb-5">Motivo de la inasistencia:</h2>
