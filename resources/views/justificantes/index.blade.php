@@ -1,10 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-link 
-            :href="route('justificantes.create')"
-        >
-            Crear justificante
-        </x-link>
+        
+        <a                        
+                href="{{ route('justificantes.create') }}"
+                class="bg-green-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase"
+            >Crear nuevo Justificante
+        </a>
     </x-slot>
 
     <div class="py-12">
