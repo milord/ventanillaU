@@ -17,10 +17,10 @@ class EditarJustificante extends Component
     public $nombre_alumno;
     public $nombre_tutor;
     public $telefono_tutor;
-    public $semestre_id;
-    public $grupo_id;
-    public $especialidade_id;
-    public $turno_id;
+    public $semestre;
+    public $grupo;
+    public $especialidade;
+    public $turno;
     public $dias_laborales;
     public $inicia_ausencia;
     public $termina_ausencia;
@@ -34,10 +34,10 @@ class EditarJustificante extends Component
         'nombre_alumno' => 'required|string',
         'nombre_tutor' => 'required|string',
         'telefono_tutor' => 'required',
-        'semestre_id' => 'required|string',
-        'grupo_id' => 'required|string',
-        'especialidade_id' => 'required|string',
-        'turno_id' => 'required|string',
+        'semestre' => 'required|string',
+        'grupo' => 'required|string',
+        'especialidade' => 'required|string',
+        'turno' => 'required|string',
         'dias_laborales' => 'required',
         'inicia_ausencia' => 'required',
         'termina_ausencia' => 'required',
@@ -51,7 +51,7 @@ class EditarJustificante extends Component
         $this->nombre_alumno = $justificante->nombre_alumno;
         $this->nombre_tutor = $justificante->nombre_tutor;
         $this->telefono_tutor = $justificante->telefono_tutor;
-        $this->semestre = $justificante->semestre_id;
+        $this->semestre = $justificante->semestre_id; //es lo que viene de la base de datos
         $this->grupo = $justificante->grupo_id;
         $this->especialidade = $justificante->especialidade_id;
         $this->turno = $justificante->turno_id;
