@@ -1,4 +1,4 @@
-<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarJustificante'>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarJustificante' novalidate>
     <div>
         <x-input-label for="nombre_alumno" :value="__('Nombre del alumno(a):')" />
         <x-text-input 
@@ -56,7 +56,7 @@
             wire:model="semestre"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
         >
-            <option>-- Seleccione --</option>
+            <option value="">-- Seleccione --</option>
             @foreach ($semestres as $semestre)
                 <option value="{{ $semestre->id }}">{{$semestre->semestre}}</option>
             @endforeach
@@ -75,7 +75,7 @@
             wire:model="grupo"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
         >
-            <option>-- Seleccione --</option>
+            <option value="">-- Seleccione --</option>
             @foreach ($grupos as $grupo)
                 <option value="{{ $grupo->id }}">{{$grupo->grupo}}</option>
             @endforeach
@@ -94,7 +94,7 @@
             wire:model="especialidade"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
         >
-            <option>-- Seleccione --</option>
+            <option value="">-- Seleccione --</option>
             @foreach ($especialidades as $especialidade)
                 <option value="{{ $especialidade->id }}">{{$especialidade->especialidade}}</option>
             @endforeach
@@ -113,7 +113,7 @@
             wire:model="turno"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
         >
-        <option>-- Seleccione --</option>
+        <option value="">-- Seleccione --</option>
             @foreach ($turnos as $turno)
                 <option value="{{ $turno->id }}">{{$turno->turno}}</option>
             @endforeach
