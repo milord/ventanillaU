@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('asignatura_completa');
             $table->string('horas_semana');
             $table->string('clave_asignatura');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,7 +33,7 @@ return new class extends Migration
             Schema::table('pestudios', function (Blueprint $table) {
                 $table->dropForeign('pestudios_semestre_id_foreign');
                 $table->dropForeign('pestudios_especialidade_id_foreign');
-                $table->dropColumn(['semestre_id', 'especialidade_id', 'asignatura', 'asignatura_completa', 'horas_semana', 'clave_asignatura']);
+                $table->dropColumn(['semestre_id', 'especialidade_id', 'asignatura', 'asignatura_completa', 'horas_semana', 'clave_asignatura', 'user_id']);
             });
             Schema::dropIfExists('pestudios');
         }

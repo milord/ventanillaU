@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call( GruposSeeder::class );
         $this->call( EspecialidadesSeeder::class );
         $this->call( TurnosSeeder::class );
-        $this->call( PestudioSeeder::class );
+        //$this->call( PestudioSeeder::class );
     }
 }

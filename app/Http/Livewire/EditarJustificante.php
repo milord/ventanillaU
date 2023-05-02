@@ -91,7 +91,7 @@ class EditarJustificante extends Component
         $justificante->termina_ausencia = $datos['termina_ausencia'];
         $justificante->motivo_inasistencia = $datos['motivo_inasistencia'];
         $justificante->imagen = $datos['imagen'] ?? $justificante->imagen;
-        $justificante->entregado = $datos['entregado'];
+//        $justificante->entregado = $datos['entregado'];
 
         // Guardar la Justificante
         $justificante->save();

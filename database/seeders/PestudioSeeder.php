@@ -19,6 +19,7 @@ class PestudioSeeder extends Seeder
             'asignatura' => 'ÁLGEBRA',
             'asignatura_completa' => 'ÁLGEBRA',
             'horas_semana' => '4',
+            'user_id' => '1',
             'clave_asignatura' => '343101-17DB',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

@@ -58,12 +58,13 @@ class JustificanteController extends Controller
      */
     public function edit(Justificante $justificante)
     {
-        //
+        
         $this->authorize('update', $justificante);
         
         return view('justificantes.edit', [
             'justificante' => $justificante
         ]);
+    
     }
 
 }
