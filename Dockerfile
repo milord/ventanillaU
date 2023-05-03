@@ -12,7 +12,7 @@ COPY . .
 RUN rm -rf /app/vendor
 RUN rm -rf /app/composer.lock
 RUN composer install --ignore-platform-reqs
-RUN composer require laravel/octane:1.5.4 spiral/roadrunner:2023.1.1
+RUN composer require laravel/octane:1.5.4 spiral/roadrunner:2023.1.1 --ignore-platform-req=php+
 COPY .env.example .env
 RUN mkdir -p /app/storage/logs
 RUN php artisan cache:clear
