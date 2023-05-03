@@ -1,24 +1,21 @@
-# Cargando imagen de PHP modo Alpine super reducida
-FROM elrincondeisma/octane:latest
+FROM php:8.0.5-apache
 
-RUN curl -sS https://getcomposer.org/installer | php -- \
-    --install-dir=/usr/local/bin --filename=composer
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    zip \
+    unzip \
+    git \
+    curl
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY --from=spiralscout/roadrunner:2.4.2 /usr/bin/rr /usr/bin/rr
+RUN docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install zip
 
-WORKDIR /app
-COPY . .
-RUN rm -rf /app/vendor
-RUN rm -rf /app/composer.lock
+COPY . /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
-RUN composer require laravel/octane:1.5.4 spiral/roadrunner:2023.1.1
-COPY .env.example .env
-RUN mkdir -p /app/storage/logs
-RUN php artisan cache:clear
-RUN php artisan view:clear
-RUN php artisan config:clear
-RUN php artisan octane:install --server="swoole"
-CMD php artisan octane:start --server="swoole" --host="0.0.0.0"
 
-EXPOSE 8000
+CMD ["apache2-foreground"]

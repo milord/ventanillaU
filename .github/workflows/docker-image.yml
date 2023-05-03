@@ -1,51 +1,50 @@
-name: Docker Image CI
+name: Deploy to Production
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
 
 jobs:
-
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      
-      - name: Git Semantic Version
-        uses: paulhatch/semantic-version@v5.0.2
-        with:
-          major_pattern: "major:"
-          mino_pattern: "feat:"
-          format: "${major}.${minor}.${patch}-prereleases${increment}"
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Git Semantic Version
+      uses: paulhatch/semantic-version@v5.0.2
+      with:
+        major_pattern: "major:"
+        mino_pattern: "feat:"
+        format: "${major}.${minor}.${patch}-prereleases${increment}"
         id: version
 
-      - name: Docker login
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          NEW_VERSION: ${{ steps.version.outputs.version }}
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: yourdockerhubusername/laravel:latest
 
-        run: |
-          echo "Iniciando login"
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-          echo "New version: $NEW_VERSION"
-      
-      - name: Build Docker image
+    - name: Deploy to production
+      uses: appleboy/ssh-action@master
+      with:
+        host: yourserverip
+        username: yourserverusername
+        password: ${{ secrets.SERVER_PASSWORD }}
+        script: |
+          docker pull yourdockerhubusername/laravel:latest
+          docker stop laravel
+          docker rm laravel
+          docker run -d --name laravel -p 80:80 -v /path/to/your/project:/var/www/html yourdockerhubusername/laravel:latest
+    - name: Build Docker image
         run: |
           docker build -t milord/ventanillau:0.0.1 .
           docker build -t milord/ventanillau:latest .
 
-      - name: Docker push image
+    - name: Docker push image
         run: |
           docker push milord/ventanillau:0.0.1
           docker push milord/ventanillau:latest
