@@ -1,27 +1,24 @@
-# syntax=docker/dockerfile:1
+# Cargando imagen de PHP modo Alpine super reducida
+FROM elrincondeisma/octane:latest
 
-#Deriving the latest base image
-FROM node:16.17.0-bullseye-slim
+RUN curl -sS https://getcomposer.org/installer | php -- \
+    --install-dir=/usr/lobal/bin --filename=composer
 
-# Any working directory can be chosen as per choice like '/' or '/home' etc
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=spiralscout/roadrunner:2.4.2 /usr/bin/rr /usr/bin/rr
+
 WORKDIR /app
-
-COPY .env.example .env
-
 COPY . .
+RUN rm -rf /app/vendor
+RUN rm -rf /app/composer.lock
+RUN composer install
+RUN composer require laravel/octane spiral/roadrunner
+COPY .env.example .env
+RUN mkdir -p /app/storage/logs
+RUN php artisan cache:clear
+RUN php artisan view:clear
+RUN php artisan config:clear
+RUN php artisan octane:install --server="swoole"
+CMD php artisan octane:start --server="swoole" --host="0.0.0.0"
 
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends software-properties-common gnupg2 wget && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list && \
-    wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
-    apt-get update -y && \
-    apt-get install -y --no-install-recommends php8.1 php8.1-curl php8.1-xml php8.1-zip php8.1-gd php8.1-mbstring php8.1-mysql && \
-    apt-get update -y && \
-    apt-get install -y composer && \
-    composer update && \
-    composer install && \
-    npm install && \
-    php artisan key:generate && \
-    rm -rf /var/lib/apt/lists/*
-
-CMD [ "bash", "./run.sh"]
+EXPOSE 8000
