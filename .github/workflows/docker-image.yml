@@ -13,7 +13,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      COMPOSER_NO_DEV: 1
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
