@@ -20,24 +20,31 @@ jobs:
         with:
           fetch-depth: 0
       
+      - name: Git Semantic Version
+        uses: PaulHatch/semantic-version@4.0.3
+        with:
+          major_pattern: "major:"
+          mino_pattern: "feat:"
+          format: "${major}.${minor}.${patch}-prereleases${increment}"
+        id: version
+
       - name: Docker login
         env:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          NEW_VERSION: ${{ steps.version.outputs.version }}
+
         run: |
           echo "Iniciando login"
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-          echo "Fin del login"
-      - name: Get repository release tag
-        id: timeseries
-        uses: pozetroninc/github-action-get-latest-release@master
-        with:
-          excludes: prerelease, draft
-          repository: ${{ github.repository }}
+          echo "New version: $NEW_VERSION"
+      
       - name: Build Docker image
         run: |
-          docker build --network=host -t ${{secrets.DOCKER_USER}}/ventanillaU:latest -t ${{secrets.DOCKER_USER}}/ventanillaU:${{ steps.timeseries.outputs.release }} .
+          docker build -t milord/ventanillaU:0.0.1 .
+          docker build -t milord/ventanillaU:latest .
+
       - name: Docker push image
         run: |
-          docker push ${{secrets.DOCKER_USER}}/ventanillaU
-          docker push ${{secrets.DOCKER_USER}}/ventanillaU:${{ steps.timeseries.outputs.release }}
+          docker push milord/ventanillaU:0.0.1
+          docker push milord/ventanillaU:latest
