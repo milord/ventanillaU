@@ -12,13 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
       - name: Docker login
         env:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
+          echo "Iniciando login"
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          echo "Fin del login"
       - name: Get repository release tag
         id: timeseries
         uses: pozetroninc/github-action-get-latest-release@master
