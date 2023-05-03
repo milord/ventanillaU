@@ -41,10 +41,10 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t milord/ventanillaU:0.0.1 .
-          docker build -t milord/ventanillaU:latest .
+          docker build -t milord/ventanillau:0.0.1 .
+          docker build -t milord/ventanillau:latest .
 
       - name: Docker push image
         run: |
-          docker push milord/ventanillaU:0.0.1
-          docker push milord/ventanillaU:latest
+          docker push milord/ventanillau:0.0.1
+          docker push milord/ventanillau:latest
