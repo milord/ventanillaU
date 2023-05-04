@@ -1,21 +1,23 @@
-FROM php:8.0.5-apache
+FROM elrincondeisma/octane:latest
 
-RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    zip \
-    unzip \
-    git \
-    curl
+RUN curl -sS https//getcomposer.org/installer | php -- \
+    --install-dir=/usr/local/bin --filename=composer
 
-RUN docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install zip
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=spiralscout/roadrunner:2.4.2 /usr/bin/rr /usr/bin/rr
 
-COPY . /var/www/html
-
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+WORKDIR /app
+COPY . .
+RUN rm -rf /app/vendor
+RUN rm -rf /app/composer.lock
 RUN composer install
+RUN composer require laravel/octane spiral/roadrunner
+COPY env.example .env
+RUN mkdir -p /app/storage/logs
+RUN php artisan cache:clear
+RUN php artisan view:clear
+RUN php artisan config:clear
+RUN php artisan octane:install --server="swoole"
+CMD php artisan octane:start --server="swoole" --host="0.0.0.0"
 
-CMD ["apache2-foreground"]
+EXPOSE 8000
