@@ -10,6 +10,7 @@ WORKDIR /app
 COPY . .
 RUN rm -rf /app/vendor
 RUN rm -rf /app/composer.lock
+ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install
 RUN composer require laravel/octane spiral/roadrunner
 COPY .env.example .env
