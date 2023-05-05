@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('justificantes.index')" :active="request()->routeIs('justificantes.index')">
                         {{ __('Justificantes') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('certificados.index')" :active="request()->routeIs('certificados.index')">
+                        {{ __('Certificados') }}
+                    </x-nav-link>
                 </div>
                 
             </div>

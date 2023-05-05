@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\JustificanteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TramiteController;
@@ -33,7 +34,8 @@ Route::get('/justificantes/{justificante}/edit', [JustificanteController::class,
 Route::get('/justificantes/{justificante}/show', [JustificanteController::class, 'show'])->middleware(['auth', 'verified'])->name('justificantes.show');
 Route::get('/justificantes/{justificante}/report', [JustificanteController::class, 'report'])->middleware(['auth', 'verified'])->name('justificante.report');
 
-
+Route::get('/certificados', [CertificadoController::class, 'index'])->middleware(['auth', 'verified'])->name('certificados.index');
+Route::get('/certificados/create', [CertificadoController::class, 'create'])->middleware(['auth', 'verified'])->name('certificados.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
