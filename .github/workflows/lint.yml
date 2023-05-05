@@ -16,4 +16,4 @@ jobs:
         uses: overtrue/phplint@main
         with:
           path: .
-          options: --exclude=*.log
+          options: --exclude=vendor
