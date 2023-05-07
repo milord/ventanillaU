@@ -12,18 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Escritorio') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tramites.index')" :active="request()->routeIs('tramites.index')">
                         {{ __('Trámites') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('justificantes.index')" :active="request()->routeIs('justificantes.index')">
-                        {{ __('Justificantes') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('certificados.index')" :active="request()->routeIs('certificados.index')">
-                        {{ __('Certificados') }}
-                    </x-nav-link>
+                                        
                 </div>
                 
             </div>

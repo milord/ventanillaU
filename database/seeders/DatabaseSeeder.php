@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call( EspecialidadesSeeder::class );
         $this->call( TurnosSeeder::class );
         //$this->call( PestudioSeeder::class );
+        $this->call( RolesSeeder::class );
+        $this->call( UsersSeeder::class );
     }
 }
