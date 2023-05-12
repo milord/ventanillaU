@@ -16,7 +16,9 @@ class MostrarJustificantes extends Component
 
     public function render()
     {
-        $justificantes= Justificante::where('user_id', auth()->user()->id)->paginate(10);
+        $justificantes = Justificante::where('user_id', auth()->user()->id)
+                                        ->orderBy('created_at', 'asc')
+                                        ->paginate(10);
 
         return view('livewire.mostrar-justificantes', [
             'justificantes' => $justificantes

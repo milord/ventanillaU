@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class JustificanteController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -45,8 +46,24 @@ class JustificanteController extends Controller
     public function report($id)
     {
         $justificante = Justificante::find($id);
-        $pdf = PDF::loadview('justificantes.show', ['justificante'=>$justificante]);
-        return $pdf->download('justificante.pdf');
+        $data = ['justificante' => $justificante];
+/*
+        // creando una nueva vista para la cabecera del PDF
+        $header = view('pdf.header')->render();
+
+        // creando una nueva vista para el pie de página del PDF
+        $footer = view('pdf.footer')->render();*/
+
+        // pasando la cabecera y el pie de página al método loadView
+        $pdf = PDF::loadView('justificantes.show', compact('justificante'));
+
+        $nombre_alumno = $justificante->nombre_alumno; 
+        $id = str_pad($justificante->id, 2, '0', STR_PAD_LEFT); 
+
+        // Configurando el tamaño del papel y la orientación 
+        $pdf->getDomPDF()->setPaper('letter', 'portrait');
+
+        return $pdf->download( $id . '-' . $nombre_alumno . '.pdf');
         
     }
 

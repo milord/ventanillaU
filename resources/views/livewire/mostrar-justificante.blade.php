@@ -1,17 +1,25 @@
-<div class="p-10">
+<div class="p-5">
+    
     <div class="mb-5">
-        <p>Folio: {{ $justificante->id }}/2023</p>
-        <p>Solicitado el día: {{ $justificante->created_at->format('d/m/Y') }}</p>
-        <h3 class="font-bold text-3xl text-gray-800 my-3">
+        <div class="md:grid md:grid-cols-2 bg-gray-50 p-4 my-5">
+            <div>
+                <p>Folio: {{ str_pad($justificante->id, 2, '0', STR_PAD_LEFT) }}/2023</p>
+                <p>Solicitado el día: {{ $justificante->created_at->format('d/m/Y') }}</p>
+            </div>
+            <div class="font-medium text-sm text-right">
+                <p>Subsecretaría de Educación Media Superior</p>
+                <p>Dirección General de Educación Tecnológica Industrial y Servicios</p>
+                <p>Centro de Estudios Tecnológicos industrial y de servicios No. 112</p>
+                <p>"Ignacio María de Allende y Unzaga"</p>
+                <p>31DCT0390G</p>
+            </div>
+        </div>
+        <h3 class="font-bold text-3xl text-gray-800 my-3 text-center">
             {{ $justificante->nombre_alumno}}
         </h3>
 
         <div class="md:grid md:grid-cols-2 bg-gray-50 p-4 my-10">
-            <p class="font-bold text-sm uppercase text-gray-800 my-3">
-                Nombre del tutor:
-                <span class="normal-case font-normal">{{ $justificante->nombre_tutor }}</span>
-            </p>
-
+            
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Teléfono del tutor:
                 <span class="normal-case font-normal">{{ $justificante->telefono_tutor }}</span>
@@ -51,13 +59,18 @@
                 Termina ausencia:
                 <span class="normal-case font-normal">{{ $justificante->termina_ausencia }}</span>
             </p>
-
-            <p class="font-bold text-sm uppercase text-gray-800 my-3">
-                Motivo de la inasistencia:
-                <span class="normal-case font-normal"></span>
-            </p>
+           
         </div>
-    
+        <div class="md:grid md:grid-cols-3 bg-gray-50 p-4 my-10 text-center">
+            <div>
+
+                <span class="normal-case font-normal">{{ $justificante->nombre_tutor }}</span> <br />
+                Nombre del tutor 
+                
+            </div>
+            <div>Directora</div>
+            <div>Sello de la escuela</div>
+        </div>
     </div>
 
     <div class="md:grid md:grid-cols-6 gap-4">

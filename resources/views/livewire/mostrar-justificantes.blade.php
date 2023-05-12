@@ -3,7 +3,9 @@
         @forelse ($justificantes as $justificante)
             <div class="p-6 bg-white border-b border-gray-200 md:flex md:justify-between md:items-center">
                 <div class="space-y-3">
-                    <p class="text-sm text-gray-600 font-bold"> {{ $justificante->id }} </p>
+                    <p class="text-sm text-gray-600 font-bold"> 
+                        {{ str_pad($justificante->id, 2, '0', STR_PAD_LEFT) }}
+                    </p>
                     <a href"#" class="text-xl font-bold">
                         {{ $justificante->nombre_alumno }}
                     </a>
