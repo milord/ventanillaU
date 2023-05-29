@@ -47,6 +47,8 @@ class JustificanteController extends Controller
     {
         $justificante = Justificante::find($id);
         $data = ['justificante' => $justificante];
+        //dd($justificante);
+        
 /*
         // creando una nueva vista para la cabecera del PDF
         $header = view('pdf.header')->render();
@@ -55,7 +57,7 @@ class JustificanteController extends Controller
         $footer = view('pdf.footer')->render();*/
 
         // pasando la cabecera y el pie de página al método loadView
-        $pdf = PDF::loadView('justificantes.show', compact('justificante'));
+        $pdf = PDF::loadView('justificantes.pdf', compact('justificante'));
 
         $nombre_alumno = $justificante->nombre_alumno; 
         $id = str_pad($justificante->id, 2, '0', STR_PAD_LEFT); 
