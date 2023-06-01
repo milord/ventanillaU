@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('modalidade_id')->constrained()->onDelete('cascade');
+            $table->boolean('tipo_solicitud');
+            $table->string('nombre_alumno');
+            $table->string('telefono_movil');
+            $table->string('correo');
             $table->timestamps();
         });
     }
@@ -22,6 +27,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certificados');
+        if (Schema::hasTable('certificados')) {
+            Schema::table('certificados', function (Blueprint $table) {
+                $table->dropForeign('certificados_modalidade_id_foreign');
+                $table->dropColumn(['tipo_solicitud', 'nombre_alumno', 'telefono_movil', 'correo']);
+            });
+            Schema::dropIfExists('certificados');
+        }
     }
 };

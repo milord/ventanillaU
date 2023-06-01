@@ -73,7 +73,7 @@ class CrearJustificante extends Component
         session()->flash('mensaje', 'El justificante se ha creado con éxito');
 
         //Redireccionar al usuario
-        return redirect()->route('tramites.index');
+        return redirect()->route('justificantes.index');
 
     }
 
