@@ -57,8 +57,15 @@
             <br>
             <p style="text-align:center">ATENTAMENTE</p>
             <p style="text-align:center">_______________________</p>
-            <p style="text-align:center">Andrés José Cetina Ponce</p>
-            <p style="text-align:center">Jefe de Servicios Escolares T.V</p>
+            @if ($justificante->turno->turno === 'VESPERTINO')
+                <p style="text-align:center">Andrés José Cetina Ponce</p>
+                <p style="text-align:center">Jefe de Servicios Escolares T.V.</p>
+            @elseif ($justificante->turno->turno === 'MATUTINO')
+                <p style="text-align:center">Roberto I. Puerto Camacho</p>
+                <p style="text-align:center">Jefe de Servicios Escolares T.M.</p>
+            @else
+                <p style="text-align:center"> Vo.Bo. </p>
+            @endif
         </div>
     </main>
     <footer>
@@ -97,8 +104,15 @@
             <br>
             <p style="text-align:center">ATENTAMENTE</p>
             <p style="text-align:center">_______________________</p>
-            <p style="text-align:center">Andrés José Cetina Ponce</p>
-            <p style="text-align:center">Jefe de Servicios Escolares T.V</p>
+            @if ($justificante->turno->turno === 'VESPERTINO')
+                <p style="text-align:center">Andrés José Cetina Ponce</p>
+                <p style="text-align:center">Jefe de Servicios Escolares T.V.</p>
+            @elseif ($justificante->turno->turno === 'MATUTINO')
+                <p style="text-align:center">Roberto I. Puerto Camacho</p>
+                <p style="text-align:center">Jefe de Servicios Escolares T.M.</p>
+            @else
+                <p style="text-align:center"> Vo.Bo. </p>
+            @endif
         </div>
     </main>
     <footer>

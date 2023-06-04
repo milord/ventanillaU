@@ -13,11 +13,21 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_solicitud');
             $table->foreignId('modalidade_id')->constrained()->onDelete('cascade');
-            $table->boolean('tipo_solicitud');
+            $table->string('no_control');
+            $table->string('especialidad');
+            $table->foreignId('turno_id')->constrained()->onDelete('cascade');
             $table->string('nombre_alumno');
-            $table->string('telefono_movil');
+            $table->string('curp');
+            $table->string('telefono');
             $table->string('correo');
+            $table->string('folio_pago');
+            $table->string('bachillerato_doc');
+            $table->string('secundaria_doc');
+            $table->string('nacimiento_doc');
+            $table->string('curp_doc');
+            $table->string('pago_doc');
             $table->timestamps();
         });
     }
@@ -30,7 +40,23 @@ return new class extends Migration
         if (Schema::hasTable('certificados')) {
             Schema::table('certificados', function (Blueprint $table) {
                 $table->dropForeign('certificados_modalidade_id_foreign');
-                $table->dropColumn(['tipo_solicitud', 'nombre_alumno', 'telefono_movil', 'correo']);
+                $table->dropForeign('certificados_turno_id_foreign');
+                $table->dropColumn(
+                    [
+                        'tipo_solicitud', 
+                        'no_control', 
+                        'especialidad', 
+                        'nombre_alumno', 
+                        'curp', 
+                        'telefono', 
+                        'correo', 
+                        'folio_pago',
+                        'bachillerato_doc',
+                        'secundaria_doc',
+                        'nacimiento_doc',
+                        'curp_doc',
+                        'pago_doc'
+                    ]);
             });
             Schema::dropIfExists('certificados');
         }

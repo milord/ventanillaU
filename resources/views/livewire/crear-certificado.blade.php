@@ -1,5 +1,18 @@
-<form class="md:w-1/2 space-y-5" novalidate>
-    <div>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearCertificado' novalidate>
+    
+    <div>{{-- Tipo de solicitud --}}
+        
+        <label for="duplicado">
+            <input type="radio" wire:model=tipo_solicitud value="duplicado">
+            Duplicado
+        </label>
+        <label for="parcial">
+            <input type="radio" wire:model=tipo_solicitud value="parcial">
+            Parcial
+        </label>
+    </div>
+    
+    <div>{{-- Modalidad de estudio --}}
         <x-input-label for="modalidad" :value="__('Modalidad:')" />
         <select
             id="modalidad"
@@ -12,7 +25,8 @@
             @endforeach
         </select>
     </div>
-    <div>
+
+    <div>{{-- Número de control --}}
         <x-input-label for="no_control" :value="__('Número de control:')" />
         <x-text-input 
             id="no_control"
@@ -23,23 +37,47 @@
             placeholder="Número de control"
         />
 
-        @error('nombre_alumno')
+        @error('no_control')
             {{$message}}
         @enderror
     </div>
-    <div>
-        {{-- Se define el valor Duplicado en el Livewire --}}
-        <label for="duplicado">
-            <input type="radio" wire:model=tipoSolicitud value="Duplicado">
-            Duplicado
-        </label>
-        <label for="parcial">
-            <input type="radio" wire:model=tipoSolicitud value="Parcial">
-            Parcial
-        </label>
+
+    <div>{{-- Especialidad o carrera --}}
+        <x-input-label for="especialidad" :value="__('Especialidad:')" />
+        <x-text-input 
+            id="especialidad"
+            class="block mt-1 w-full"
+            type="text"
+            wire:model="especialidad"
+            :value="old('especialidad')"
+            placeholder="Nombre de la especialidad"
+        />
+
+        @error('especialidad')
+            {{$message}}
+        @enderror
     </div>
 
-    <div>
+    <div>{{-- Turno en el que terminó sus estudios --}}
+        <x-input-label for="turno" :value="__('Turno:')" />
+        <select 
+            id="turno"
+            wire:model="turno"
+            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
+        >
+        <option>-- Seleccione --</option>
+            @foreach ($turnos as $turno)
+                <option value="{{ $turno->id }}">{{$turno->turno}}</option>
+            @endforeach
+        </select>
+
+        @error('turno')
+            {{$message}}
+        @enderror
+
+    </div>
+    
+    <div>{{-- Nombre completo del alumno --}}
         <x-input-label for="nombre_alumno" :value="__('Nombre del alumno(a):')" />
         <x-text-input 
             id="nombre_alumno"
@@ -55,7 +93,23 @@
         @enderror
     </div>
 
-    <div>
+    <div>{{-- Clave Única de Registro de Población --}}
+        <x-input-label for="curp" :value="__('CURP:')" />
+        <x-text-input 
+            id="curp"
+            class="block mt-1 w-full"
+            type="text"
+            wire:model="curp"
+            :value="old('curp')"
+            placeholder="Clave Única de Registro de Población"
+        />
+
+        @error('curp')
+            {{$message}}
+        @enderror
+    </div>
+
+    <div>{{-- Teléfono --}}
         <x-input-label for="telefono" :value="__('Teléfono del alumno:')" />
         <x-text-input 
             id="telefono"
@@ -73,7 +127,7 @@
         @enderror
     </div>
 
-    <div>
+    <div>{{-- Correo electrónico--}}
         <x-input-label for="correo" :value="__('Correo del alumno(a):')" />
         <x-text-input 
             id="correo"
@@ -89,27 +143,69 @@
         @enderror
     </div>
 
-    <div>
+    <div>{{-- Folio pago CEAP --}}
+        <x-input-label for="folio_pago" :value="__('Folio pago:')" />
+        <x-text-input 
+            id="folio_pago"
+            class="block mt-1 w-full"
+            type="text"
+            wire:model="folio_pago"
+            :value="old('folio_pago')"
+            placeholder="Folio pago"
+        />
+
+        @error('folio_pago')
+            {{$message}}
+        @enderror
+    </div>
+
+    <div>{{-- Documentación impresa entregada --}}
+        <strong>Documentación entregada</strong>
         <label class="flex items-center">
-            <input wire:model="bachillerato" type="checkbox" />
+            <input wire:model="bachillerato_doc" type="checkbox" />
             Copia del certificado de bachillerato
         </label>
         <label class="flex items-center">
-            <input wire:model="secundaria" type="checkbox" />
+            <input wire:model="secundaria_doc" type="checkbox" />
             Copia del certificado de secundaria
         </label>
         <label class="flex items-center">
-            <input wire:model="nacimiento" type="checkbox" />
+            <input wire:model="nacimiento_doc" type="checkbox" />
             Copia del certificado de nacimiento
         </label>
         <label class="flex items-center">
-            <input wire:model="curp" type="checkbox" />
-            CURP
+            <input wire:model="curp_doc" type="checkbox" />
+            CURP impresa
         </label>
         <label class="flex items-center">
-            <input wire:model="pago" type="checkbox" />
-            Copia pago CEAP
+            <input wire:model="pago_doc" type="checkbox" />
+            Pago CEAP
         </label>
     </div>
+
+    <div>{{-- Imagen del pago CEAP --}}
+        <x-input-label for="imagen" :value="__('Pago CEAP:')" />
+        <input type="file"
+            wire:model="imagen"
+            id="imagen"
+            class="block mt-1 w-full"
+            accept="image/*"
+        />
+
+        <div class="my-5">
+            @if ($imagen)
+                Pago CEAP:
+                <img src="{{ $imagen->temporaryURL() }}">
+            @endif
+
+        @error('imagen')
+            {{$message}}
+        @enderror
+
+    </div>
+
+    <x-primary-button>
+        Crear solicitud de certificado
+    </x-primary-button>
 
 </form>
