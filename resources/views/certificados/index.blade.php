@@ -23,7 +23,7 @@
 
                 @endif
 
-                       {{-- <livewire:mostrar-certificados /> --}}
+                       <livewire:mostrar-certificados />
                     
         </div>
     </div>

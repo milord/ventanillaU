@@ -20,9 +20,11 @@ class CrearCertificado extends Component
     public $telefono;
     public $correo;
     public $folio_pago;
-    public $bachillerato;
-    public $secundaria;
-    public $nacimiento;
+    public $bachillerato_doc;
+    public $secundaria_doc;
+    public $nacimiento_doc;
+    public $curp_doc;
+    public $pago_doc;
     public $imagen;
 
     use WithFileUploads;
@@ -32,16 +34,18 @@ class CrearCertificado extends Component
         'modalidade' => 'required|string',
         'no_control' => 'required',
         'especialidad' => 'required|string',
-        'turno' => 'turno|string',
+        'turno' => 'required|string',
         'nombre_alumno' => 'required|string',
         'curp' => 'required',
         'telefono' => 'required',
         'correo' => 'required|string',
         'folio_pago' => 'required',
-        'bachillerato' => 'required|string',
-        'secundaria' => 'required',
-        'nacimiento' => 'required',
-        'imagen'=> 'required|image|max:1024'
+        'bachillerato_doc' => 'required',
+        'secundaria_doc' => 'required',
+        'nacimiento_doc' => 'required',
+        'curp_doc' => 'required',
+        'pago_doc' => 'required',
+        'imagen'=> 'image|max:1024'
 
     ];
 
@@ -58,19 +62,21 @@ class CrearCertificado extends Component
         //Crear solicitud de certificado
         Certificado::create([
 
-        'tipo_solicitud' => 'required|string',
-        'modalidade' => 'required|string',
-        'no_control' => 'required',
-        'especialidad' => 'required|string',
-        'turno' => 'turno|string',
-        'nombre_alumno' => 'required|string',
-        'curp' => 'required',
-        'telefono' => 'required',
-        'correo' => 'required|string',
-        'folio_pago' => 'required',
-        'bachillerato' => 'required|string',
-        'secundaria' => 'required',
-        'nacimiento' => 'required',
+        'tipo_solicitud' => $datos['tipo_solicitud'],
+        'modalidade_id' => $datos['modalidade'],
+        'no_control' => $datos['no_control'],
+        'especialidad' => $datos['especialidad'],
+        'turno_id' => $datos['turno'],
+        'nombre_alumno' => $datos['nombre_alumno'],
+        'curp' => $datos['curp'],
+        'telefono' => $datos['telefono'],
+        'correo' => $datos['correo'],
+        'folio_pago' => $datos['folio_pago'],
+        'bachillerato_doc' => $datos['bachillerato_doc'],
+        'secundaria_doc' => $datos['secundaria_doc'],
+        'nacimiento_doc' => $datos['nacimiento_doc'],
+        'curp_doc' => $datos['curp_doc'],
+        'pago_doc' => $datos['pago_doc'],
         'imagen'=> $datos['imagen'],
         'user_id' => auth()->user()->id
             

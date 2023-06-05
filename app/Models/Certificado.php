@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Modalidade;
+use App\Models\Turno;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,9 @@ class Certificado extends Model
         'bachillerato_doc',
         'secundaria_doc',
         'curp_doc',
-        'pago_doc'
+        'pago_doc',
+        'imagen',
+        'user_id'
     ];
 
     public function modalidade()

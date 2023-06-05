@@ -13,10 +13,10 @@
     </div>
     
     <div>{{-- Modalidad de estudio --}}
-        <x-input-label for="modalidad" :value="__('Modalidad:')" />
+        <x-input-label for="modalidade" :value="__('Modalidad:')" />
         <select
-            id="modalidad"
-            wire:model='modalidad'
+            id="modalidade"
+            wire:model='modalidade'
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
         >
             <option>-- Seleccione Modalidad --</option>
@@ -161,26 +161,45 @@
 
     <div>{{-- Documentación impresa entregada --}}
         <strong>Documentación entregada</strong>
-        <label class="flex items-center">
-            <input wire:model="bachillerato_doc" type="checkbox" />
+        <x-input-label for="bachillerato_doc" />
+            <x-text-input
+            id="bachillerato_doc" 
+            wire:model="bachillerato_doc" 
+            type="checkbox" 
+            />
             Copia del certificado de bachillerato
-        </label>
-        <label class="flex items-center">
-            <input wire:model="secundaria_doc" type="checkbox" />
+        <x-input-label for="secundaria_doc" />
+            <x-text-input
+            id="secundaria_doc" 
+            wire:model="secundaria_doc" 
+            type="checkbox" 
+            />
             Copia del certificado de secundaria
-        </label>
-        <label class="flex items-center">
-            <input wire:model="nacimiento_doc" type="checkbox" />
+        
+        <x-input-label for="nacimiento_doc" />
+            <x-text-input
+            id="nacimiento_doc" 
+            wire:model="nacimiento_doc" 
+            type="checkbox" 
+            />
             Copia del certificado de nacimiento
-        </label>
-        <label class="flex items-center">
-            <input wire:model="curp_doc" type="checkbox" />
+        
+        <x-input-label for="curp_doc" />
+            <x-text-input 
+            id="curp_doc"
+            wire:model="curp_doc" 
+            type="checkbox" 
+            />
             CURP impresa
-        </label>
-        <label class="flex items-center">
-            <input wire:model="pago_doc" type="checkbox" />
+       
+        <x-input-label for="pago_doc" />
+            <x-text-input
+            id="pago_doc"
+            wire:model="pago_doc" 
+            type="checkbox" 
+            />
             Pago CEAP
-        </label>
+        
     </div>
 
     <div>{{-- Imagen del pago CEAP --}}
@@ -201,6 +220,7 @@
         @error('imagen')
             {{$message}}
         @enderror
+        </div>
 
     </div>
 
