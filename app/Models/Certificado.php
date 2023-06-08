@@ -26,6 +26,7 @@ class Certificado extends Model
         'folio_pago',
         'bachillerato_doc',
         'secundaria_doc',
+        'nacimiento_doc',
         'curp_doc',
         'pago_doc',
         'imagen',

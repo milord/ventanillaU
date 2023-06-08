@@ -23,11 +23,11 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('correo');
             $table->string('folio_pago');
-            $table->string('bachillerato_doc');
-            $table->string('secundaria_doc');
-            $table->string('nacimiento_doc');
-            $table->string('curp_doc');
-            $table->string('pago_doc');
+            $table->boolean('bachillerato_doc');
+            $table->boolean('secundaria_doc');
+            $table->boolean('nacimiento_doc');
+            $table->boolean('curp_doc');
+            $table->boolean('pago_doc');
             $table->timestamps();
         });
     }

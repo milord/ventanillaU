@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('certificados', function (Blueprint $table) {
             $table->string('imagen')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -21,8 +22,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('certificados', function (Blueprint $table) {
-            $table->dropColumn('imagen');
-        });
+        if (Schema::hasTable('certificados')) {
+            Schema::table('certificados', function (Blueprint $table) {
+                $table->dropForeign('certificados_user_id_foreign');
+                $table->dropColumn(['imagen', 'user_id']);
+            });
+            Schema::dropIfExists('certificados');
+        }
     }
 };

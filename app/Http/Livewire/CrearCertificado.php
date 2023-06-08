@@ -40,11 +40,11 @@ class CrearCertificado extends Component
         'telefono' => 'required',
         'correo' => 'required|string',
         'folio_pago' => 'required',
-        'bachillerato_doc' => 'required',
-        'secundaria_doc' => 'required',
-        'nacimiento_doc' => 'required',
-        'curp_doc' => 'required',
-        'pago_doc' => 'required',
+        'bachillerato_doc' => 'required|boolean',
+        'secundaria_doc' => 'required|boolean',
+        'nacimiento_doc' => 'required|boolean',
+        'curp_doc' => 'required|boolean',
+        'pago_doc' => 'required|boolean',
         'imagen'=> 'image|max:1024'
 
     ];

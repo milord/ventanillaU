@@ -36,6 +36,8 @@ Route::get('/justificantes/{justificante}/report', [JustificanteController::clas
 
 Route::get('/certificados', [CertificadoController::class, 'index'])->middleware(['auth', 'verified'])->name('certificados.index');
 Route::get('/certificados/create', [CertificadoController::class, 'create'])->middleware(['auth', 'verified'])->name('certificados.create');
+Route::get('/certificados/{certificado}/edit', [CertificadoController::class, 'edit'])->middleware(['auth', 'verified'])->name('certificados.edit');
+Route::get('/certificados/{certificado}/show', [CertificadoController::class, 'show'])->middleware(['auth', 'verified'])->name('certificados.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

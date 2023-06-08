@@ -44,9 +44,12 @@ class CertificadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Certificado $certificado)
     {
         //
+        return view('certificados.edit', [
+            'certificado' => $certificado
+        ]);
     }
 
     /**
