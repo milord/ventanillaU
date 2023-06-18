@@ -43,28 +43,19 @@ class CertificadoController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param int $id
+     * @return \Illuminate\Http\Response
      */
     public function edit(Certificado $certificado)
     {
-        //
+        //autenticando en el Policy
+        $this->authorize('update', $certificado);
+        
         return view('certificados.edit', [
             'certificado' => $certificado
         ]);
+    
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    
 }

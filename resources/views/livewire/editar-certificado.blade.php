@@ -202,7 +202,7 @@
         
     </div>
 
-    {{-- Imagen del pago CEAP 
+    {{-- Imagen del pago CEAP  
     <div>
         <x-input-label for="imagen" :value="__('Pago CEAP:')" />
         <input type="file"

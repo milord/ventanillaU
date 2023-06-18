@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\Certificado;
-use Livewire\Component;
 use App\Models\Modalidade;
 use App\Models\Turno;
+use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class CrearCertificado extends Component
