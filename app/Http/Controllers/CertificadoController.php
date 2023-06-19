@@ -24,17 +24,9 @@ class CertificadoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
-    public function show(string $certificado)
+    public function show(Certificado $certificado)
     {
         return view('certificados.show', [
             'certificado' => $certificado
@@ -57,5 +49,7 @@ class CertificadoController extends Controller
         ]);
     
     }
+
+    //Se eliminaron las funciones store, update y destroy ya se usamos Livewire para eso
     
 }

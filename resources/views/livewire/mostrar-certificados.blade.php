@@ -26,7 +26,7 @@
                     >Editar</a>
 
                     <button
-                        wire:click="$emit('prueba', {{ $certificado->id }})"
+                        wire:click="$emit('mostrarAlerta', {{ $certificado->id }})"
                         class="bg-red-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase"
                     >Eliminar</button>
 
@@ -43,3 +43,38 @@
         {{ $certificados->links() }}
     </div>
 </div>
+
+@push('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        Livewire.on('mostrarAlerta', certificadoId => {
+            Swal.fire({
+            title: '¿Eliminar Certificado?',
+            text: "Recuerda que un certificado eliminado, no se puede volver a recuperar",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, ¡Eliminar!',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Eliminar justificante, emitiendo un evento hacia el componente
+                    Livewire.emit('eliminarCertificado', certificadoId)
+                    Swal.fire(
+                        'Certificado eliminado',
+                        'El certificado ha sido eliminado correctamente',
+                        'success'
+                    )
+                }
+            })
+        })
+
+        
+
+    </script>
+
+@endpush    

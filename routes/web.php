@@ -38,6 +38,8 @@ Route::get('/certificados', [CertificadoController::class, 'index'])->middleware
 Route::get('/certificados/create', [CertificadoController::class, 'create'])->middleware(['auth', 'verified'])->name('certificados.create');
 Route::get('/certificados/{certificado}/edit', [CertificadoController::class, 'edit'])->middleware(['auth', 'verified'])->name('certificados.edit');
 Route::get('/certificados/{certificado}/show', [CertificadoController::class, 'show'])->middleware(['auth', 'verified'])->name('certificados.show');
+Route::get('/certificados/{certificado}/report', [CertificadoController::class, 'report'])->middleware(['auth', 'verified'])->name('certificado.report');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

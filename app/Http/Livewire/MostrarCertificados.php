@@ -7,9 +7,9 @@ use Livewire\Component;
 
 class MostrarCertificados extends Component
 {
-    protected $listeners = ['eliminarCertificado'];
+    protected $listeners = ['eliminarCertificado']; //Escucha los eventos que están ocurriendo
 
-    public function eliminarCertificado( Certificado $certificado)
+    public function eliminarCertificado( Certificado $certificado) //Método eliminarCertificado
     {
         $certificado->delete();
     }
