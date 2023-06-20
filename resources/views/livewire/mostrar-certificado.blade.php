@@ -75,12 +75,22 @@
 
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Entregó copia de su CURP:
-                <span class="normal-case font-normal">{{ $certificado->curp_doc }}</span>
+                @if ( $certificado->curp_doc == '1' )
+                    
+                @endif
+                <span class="normal-case font-normal"></span>
             </p>
 
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Entregó copia de su pago en CEAP:
-                <span class="normal-case font-normal">{{ $certificado->pago_doc }}</span>
+                @if ($certificado->pago_doc == '1')
+                <span class="normal-case font-normal">Entregado</span>
+                @elseif ($certificado->pago_doc === '0')
+                <span class="normal-case font-normal">Documento pendiente</span>
+                @else
+                <span class="normal-case font-normal">No se capturó en la solicitud </span>
+                @endif
+
             </p>
 
         </div>
