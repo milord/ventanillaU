@@ -4,8 +4,13 @@
         
         <div class="md:flex md:justify-between md:items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Certificado de: {{ $certificado->nombre_alumno }}
+               Solicitud de certificado de: {{ $certificado->nombre_alumno }}
             </h2>
+            <a                        
+                href=" {{ route('certificados.edit', $certificado->id) }}"
+                class="bg-blue-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase"
+            >Editar</a>
+
             <a                        
                 href="{{ route('certificado.report', $certificado->id) }}"
                 class="bg-green-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase"

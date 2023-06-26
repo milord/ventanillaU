@@ -60,32 +60,53 @@
             
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Entregó copia de su certificado de bachillerato:
-                <span class="normal-case font-normal">{{ $certificado->bachillerato_doc }}</span>
+                @if ( $certificado->bachillerato_doc == '1' )
+                <span class="normal-case font-normal" style="color:green">Entregado</span>
+                @elseif ( $certificado->bachillerato_doc == '0' )
+                <span class="normal-case font-normal">Documento Pendiente</span> 
+                @else
+                <span class="normal-case font-normal">No se capturó en el formulario</span>
+                @endif
             </p>
 
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Entregó copia de su certificado de secundaria:
-                <span class="normal-case font-normal">{{ $certificado->secundaria_doc }}</span>
+                @if ( $certificado->secundaria_doc == '1' )
+                <span class="normal-case font-normal" style="color:green">Entregado</span>  
+                @elseif ( $certificado->secundaria_doc == '0' )
+                <span class="normal-case font-normal">Documento Pendiente</span> 
+                @else
+                <span class="normal-case font-normal">No se capturó en el formulario</span>
+                @endif
             </p>
 
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Entregó copia de su acta de nacimiento:
-                <span class="normal-case font-normal">{{ $certificado->nacimiento_doc }}</span>
+                @if ($certificado->nacimiento_doc == '1')
+                <span class="normal-case font-normal" style="color:green">Entregado</span>
+                @elseif ( $certificado->nacimiento_doc == '0' )
+                <span class="normal-case font-normal">Documento Pendiente</span>
+                @else
+                <span class="normal-case font-normal">No se capturó en el formulario</span>
+                @endif
             </p>
 
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Entregó copia de su CURP:
                 @if ( $certificado->curp_doc == '1' )
-                    
+                <span class="normal-case font-normal" style="color:green">Entregado</span>
+                @elseif ( $certificado->curp_doc == '0' )
+                <span class="normal-case font-normal">Documento Pendiente</span> 
+                @else
+                <span class="normal-case font-normal">No se capturó en el formulario</span>
                 @endif
-                <span class="normal-case font-normal"></span>
             </p>
 
             <p class="font-bold text-sm uppercase text-gray-800 my-3">
                 Entregó copia de su pago en CEAP:
                 @if ($certificado->pago_doc == '1')
-                <span class="normal-case font-normal">Entregado</span>
-                @elseif ($certificado->pago_doc === '0')
+                <span class="normal-case font-normal" style="color:green">Entregado</span>
+                @elseif ($certificado->pago_doc == '0')
                 <span class="normal-case font-normal">Documento pendiente</span>
                 @else
                 <span class="normal-case font-normal">No se capturó en la solicitud </span>
