@@ -13,7 +13,7 @@
             <x-nav-link :href="route('certificados.index')" :active="request()->routeIs('certificados.index')">
                 {{ __('Certificados') }}
             </x-nav-link> 
-            <x-nav-link :href="route('certificados.index')" :active="request()->routeIs('certificados.index')">
+            <x-nav-link :href="route('constancias.index')" :active="request()->routeIs('constancias.index')">
                 {{ __('Constancia estudios') }}
             </x-nav-link> 
             <x-nav-link :href="route('certificados.index')" :active="request()->routeIs('certificados.index')">

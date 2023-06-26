@@ -9,9 +9,9 @@ class MostrarJustificantes extends Component
 {   
     protected $listeners = ['eliminarJustificante'];
 
-    public function eliminarJustificante( Justificante $vacante )
+    public function eliminarJustificante( Justificante $justificante )
     {
-        $vacante->delete();
+        $justificante->delete();
     }
 
     public function render()

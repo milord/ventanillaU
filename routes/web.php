@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CertificadoController;
+use App\Http\Controllers\ConstanciaController;
 use App\Http\Controllers\JustificanteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TramiteController;
@@ -36,6 +37,13 @@ Route::get('/justificantes/{justificante}/report', [JustificanteController::clas
 
 Route::get('/certificados', [CertificadoController::class, 'index'])->middleware(['auth', 'verified'])->name('certificados.index');
 Route::get('/certificados/create', [CertificadoController::class, 'create'])->middleware(['auth', 'verified'])->name('certificados.create');
+Route::get('/certificados/{certificado}/edit', [CertificadoController::class, 'edit'])->middleware(['auth', 'verified'])->name('certificados.edit');
+Route::get('/certificados/{certificado}/show', [CertificadoController::class, 'show'])->middleware(['auth', 'verified'])->name('certificados.show');
+Route::get('/certificados/{certificado}/report', [CertificadoController::class, 'report'])->middleware(['auth', 'verified'])->name('certificado.report');
+
+Route::get('/constancias', [ConstanciaController::class, 'index'])->middleware(['auth', 'verified'])->name('constancias.index');
+Route::get('/constancias/create', [ConstanciaController::class, 'create'])->middleware(['auth', 'verified'])->name('constancias.create');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,4 +1,4 @@
-<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearCertificado' novalidate>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarCertificado' novalidate>
     
     <div>{{-- Tipo de solicitud --}}
         
@@ -202,7 +202,8 @@
         
     </div>
 
-    <div>{{-- Imagen del pago CEAP --}}
+    {{-- Imagen del pago CEAP  
+    <div>
         <x-input-label for="imagen" :value="__('Pago CEAP:')" />
         <input type="file"
             wire:model="imagen"
@@ -222,10 +223,10 @@
         @enderror
         </div>
 
-    </div>
+    </div> --}}
 
     <x-primary-button>
-        Crear solicitud de certificado
+        Editar solicitud de certificado
     </x-primary-button>
 
 </form>
