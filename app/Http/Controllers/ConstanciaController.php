@@ -12,4 +12,9 @@ class ConstanciaController extends Controller
     {
         return view('constancias.index');
     }
+
+    public function create()
+    {
+        return view('constancias.create'); 
+    }
 }
