@@ -91,6 +91,18 @@ class CrearConstancia extends Component
 
     public function render()
     {
-        return view('livewire.crear-constancia');
+        //Consultar DB
+        $semestres = Semestre::all();
+        $grupos = Grupo::all();
+        $especialidades = Especialidade::all();
+        $turnos = Turno::all();
+
+        return view('livewire.crear-constancia', [
+            'semestres' => $semestres,
+            'grupos' => $grupos,
+            'especialidades' => $especialidades,
+            'turnos' => $turnos
+            
+        ]);
     }
 }
