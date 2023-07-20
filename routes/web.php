@@ -4,6 +4,7 @@ use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\ConstanciaController;
 use App\Http\Controllers\JustificanteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TramiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,9 @@ Route::get('/certificados/{certificado}/report', [CertificadoController::class, 
 
 Route::get('/constancias', [ConstanciaController::class, 'index'])->middleware(['auth', 'verified'])->name('constancias.index');
 Route::get('/constancias/create', [ConstanciaController::class, 'create'])->middleware(['auth', 'verified'])->name('constancias.create');
+
+Route::get('/servicios', [ServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('servicios.index');
+Route::get('/servicios/create', [ServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('servicios.create');
 
 
 Route::middleware('auth')->group(function () {

@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
           
-            {{ __('Configuración') }}
+            {{ __('Configuración Plantel') }}
         </h2>
     </x-slot>
 
@@ -15,7 +15,9 @@
                     Plantel <br />
                     Carreras / Especialidades <br />
                     Grupos <br />
-                    Ciclos <br />
+                    Ciclo escolar <br />
+                    Período Escolar
+                    Fechas receso escolar
                     Semestre <br />
                     Turnos <br />
                     Plan de estudios <br />

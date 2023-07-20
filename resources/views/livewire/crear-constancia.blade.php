@@ -134,25 +134,6 @@
 
     </div>
 
-    <div> {{-- Área de estudios de la especialidad --}}
-        <x-input-label for="area_estudios" :value="__('Área de estudios:')" />
-        <select 
-            id="area_estudios"
-            wire:model="area_estudios"
-            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
-        >
-            <option>-- Seleccione --</option>
-            {{-- @foreach ($area_estudios as $area_estudio)
-                <option value="{{ $area_estudio->id }}">{{$area_estudio->area_estudio}}</option>
-            @endforeach --}}
-        </select> 
-
-        @error('area_estudio')
-            {{$message}}
-        @enderror
-
-    </div>
-
     <div> {{-- Ciclo escolar al que pertenece el semestre --}}
         <x-input-label for="ciclo_escolar" :value="__('Ciclo Escolar:')" />
         <select 
@@ -180,10 +161,7 @@
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
         > 
             <option>-- Seleccione --</option>
-            {{--
-            @foreach ($periodo_escolars as $periodo_escolar)
-                <option value="{{ $periodo_escolar->id }}">{{$periodo_escolar->periodo_escolar}}</option>
-            @endforeach --}}
+            <option value="1">Agosto 2023 - Enero 2024</option>
         </select>
 
         @error('periodo_escolar')
