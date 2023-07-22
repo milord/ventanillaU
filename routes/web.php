@@ -47,7 +47,9 @@ Route::get('/constancias/create', [ConstanciaController::class, 'create'])->midd
 
 Route::get('/servicios', [ServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('servicios.index');
 Route::get('/servicios/create', [ServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('servicios.create');
-
+Route::get('/servicios/{servicio}/edit', [ServicioController::class, 'edit'])->middleware(['auth', 'verified'])->name('servicios.edit');
+Route::get('/servicios/{servicio}/show', [ServicioController::class, 'show'])->middleware(['auth', 'verified'])->name('servicios.show');
+Route::get('/servicios/{servicio}/report', [ServicioController::class, 'report'])->middleware(['auth', 'verified'])->name('servicio.report');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

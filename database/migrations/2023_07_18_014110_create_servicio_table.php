@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('amaterno');
             $table->string('nombres_alumno');
             $table->string('domicilio');
+            $table->string('colonia');
             $table->integer('cp');
+            $table->foreignId('semestre_id')->constrained()->onDelete('cascade');
             $table->foreignId('especialidade_id')->constrained()->onDelete('cascade');
             $table->date('inicia_servicio');
             $table->date('termina_servicio');
@@ -34,9 +36,10 @@ return new class extends Migration
     {
         if (Schema::hasTable('servicios')) {
             Schema::table('servicios', function (Blueprint $table) {
+                $table->dropForeign('servicios_semestre_id_foreign');
                 $table->dropForeign('servicios_especialidade_id_foreign');
                 $table->dropForeign('servicios_user_id_foreign');
-                $table->dropColumn(['apaterno', 'amaterno', 'nombres_alumno', 'domicilio', 'cp', 'especialidade_id',
+                $table->dropColumn(['apaterno', 'amaterno', 'nombres_alumno', 'domicilio', 'colonia', 'cp', 'semestre_id', 'especialidade_id',
                 'inicia_servicio', 'termina_servicio', 'entregado', 'user_id']);
             });
             Schema::dropIfExists('servicios');

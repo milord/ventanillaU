@@ -12,6 +12,7 @@
                         class="bg-green-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase"
                     >Imprimir</a>
                 </div>
+                
             </x-slot>
 
             <div class="py-12">

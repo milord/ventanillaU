@@ -37,7 +37,7 @@ class ServicioPolicy
      */
     public function update(User $user, Servicio $servicio): bool
     {
-        //
+        return $user->id === $servicio->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class ServicioPolicy
      */
     public function delete(User $user, Servicio $servicio): bool
     {
-        //
+        
     }
 
     /**

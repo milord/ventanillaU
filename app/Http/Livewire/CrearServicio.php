@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Especialidade;
 use App\Models\Servicio;
+use App\Models\Semestre;
 
 class CrearServicio extends Component
 {
@@ -12,7 +13,9 @@ class CrearServicio extends Component
     public $amaterno;
     public $nombres_alumno;
     public $domicilio;
+    public $colonia;
     public $cp;
+    public $semestre;
     public $especialidade;
     public $inicia_servicio;
     public $termina_servicio;
@@ -22,7 +25,9 @@ class CrearServicio extends Component
         'amaterno' => 'required|string',
         'nombres_alumno' => 'required|string',
         'domicilio' => 'required|string',
+        'colonia' => 'required|string',
         'cp' => 'required',
+        'semestre' => 'required|string',
         'especialidade' => 'required|string',
         'inicia_servicio' => 'required',
         'termina_servicio' => 'required' 
@@ -39,6 +44,8 @@ class CrearServicio extends Component
             'nombres_alumno' => $datos['nombres_alumno'],
             'domicilio' => $datos['domicilio'],
             'cp' => $datos['cp'],
+            'colonia' => $datos['colonia'],
+            'semestre_id' => $datos['semestre'],
             'especialidade_id'=> $datos['especialidade'],
             'inicia_servicio'=> $datos['inicia_servicio'],
             'termina_servicio'=> $datos['termina_servicio'],
@@ -55,9 +62,11 @@ class CrearServicio extends Component
     public function render()
     {
         //Consultar DB
+        $semestres = Semestre::all();
         $especialidades = Especialidade::all();
 
         return view('livewire.crear-servicio', [
+            'semestres' => $semestres,
             'especialidades' => $especialidades
         ]);
         

@@ -47,8 +47,8 @@
             <p style="text-align: center; font-weight:bold">JUSTIFICANTE DE INASISTENCIA</p>
         </div>
         <div>
-            <p >ESTIMADO DOCENTE:</p>
-            <p >Por este conducto, solicito a ustedes, le sea(n) justificada(s) la(s) inasistencia(s) al alumno(a)  </p>   
+            <p>ESTIMADO DOCENTE:</p>
+            <p> Por este conducto, solicito a ustedes, le sea(n) justificada(s) la(s) inasistencia(s) al alumno(a)  </p>   
             <p style=" display: flex;justify-content: space-between;"><span style="text-transform: uppercase;font-weight:bold;margin-right:20px;">{{ $justificante->nombre_alumno}}</span>  Grado y grupo:<span style="text-transform: uppercase;font-weight:bold;margin-right:20px;">{{$justificante->grupo->grupo}}</span>       Especialidad: <span style="text-transform: uppercase;font-weight:bold">{{ $justificante->especialidade->especialidade }}</span></p>
             <p style=" display: flex;justify-content: space-between;">Motivo: <span style="font-weight:bold;margin-right:20px;">{{ $justificante->motivo_inasistencia}}</span>  días justificados: <span style="font-weight:bold;margin-right:20px;">{{Illuminate\Support\Carbon::parse($justificante->inicia_ausencia )->translatedFormat('F d')}} y {{Illuminate\Support\Carbon::parse( $justificante->termina_ausencia )->translatedFormat('F d')}} de {{Illuminate\Support\Carbon::parse( $justificante->termina_ausencia )->format('Y')}}</span> Turno: <span style="font-weight:bold">{{  $justificante->turno->turno }}</span></p>
             <p style=" display: flex;justify-content: space-between;">Nombre del tutor : <span style="font-weight:bold;margin-right:20px;">{{ $justificante->nombre_tutor}}</span> 	Teléfono del tutor :   <span style="font-weight:bold">{{ $justificante->telefono_tutor}}</span></p>

@@ -1,4 +1,4 @@
-<form class="md:w-1/2 space-y-5" wire:submit.prevent='crearServicio' novalidate>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarServicio' novalidate>
     <div> {{-- Apellido paterno del alumno --}}
         <x-input-label for="apaterno" :value="__('Apellido Paterno:')" />
         <x-text-input 
@@ -63,22 +63,6 @@
         @enderror
     </div>
 
-    <div>{{-- Colonia del alumno --}}
-        <x-input-label for="colonia" :value="__('Colonia:')" />
-        <x-text-input 
-            id="colonia"
-            class="block mt-1 w-full"
-            type="text"
-            wire:model="colonia"
-            :value="old('colonia')"
-            placeholder="Colonia del alumno(a)"
-        />
-
-        @error('colonia')
-            {{$message}}
-        @enderror
-    </div>
-
     <div>{{-- Código postal --}}
         <x-input-label for="cp" :value="__('Código postal:')" />
         <x-text-input 
@@ -93,25 +77,6 @@
         @error('cp')
             {{$message}}
         @enderror
-    </div>
-
-    <div>{{-- Semestre que estudia el alumno --}}
-        <x-input-label for="semestre" :value="__('Semestre:')" />
-        <select 
-            id="semestre"
-            wire:model="semestre"
-            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
-        >
-            <option>-- Seleccione --</option>
-            @foreach ($semestres as $semestre)
-                <option value="{{ $semestre->id }}">{{$semestre->semestre}}</option>
-            @endforeach
-        </select>
-
-        @error('semestre')
-            {{$message}}
-        @enderror
-
     </div>
 
     <div>{{-- Especialidad o Carrera que estudia el alumno --}}
@@ -163,6 +128,6 @@
     </div>
 
     <x-primary-button>
-        Guardar los datos del pasante
+        Guardar los cambios del pasante
     </x-primary-button>
 </form>

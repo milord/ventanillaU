@@ -23,7 +23,7 @@
 
                 @endif
 
-                        
+                <livewire:mostrar-servicios />            
                     
         </div>
     </div>
