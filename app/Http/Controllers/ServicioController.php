@@ -50,6 +50,7 @@ class ServicioController extends Controller
         
         // pasando la cabecera y el pie de página al método loadView
         $pdf = PDF::loadView('servicios.pdf', compact('servicio'));
+        //$pdf = PDF::loadView('servicios.FSS2', compact('servicio'));
 
         $nombres_alumno = $servicio->nombres_alumno; 
         $id = str_pad($servicio->id, 2, '0', STR_PAD_LEFT); 

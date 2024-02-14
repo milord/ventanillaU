@@ -80,6 +80,25 @@
     </div>
 
     <div>{{-- Especialidad o Carrera que estudia el alumno --}}
+        <x-input-label for="semestre" :value="__('Semestre:')" />
+        <select 
+            id="semestre"
+            wire:model="semestre"
+            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
+        >
+            <option>-- Seleccione --</option>
+            @foreach ($semestres as $semestre)
+                <option value="{{ $semestre->id }}">{{$semestre->semestre}}</option>
+            @endforeach
+        </select>
+
+        @error('semestre')
+            {{$message}}
+        @enderror
+
+    </div>
+
+    <div>{{-- Especialidad o Carrera que estudia el alumno --}}
         <x-input-label for="especialidade" :value="__('Especialidad:')" />
         <select 
             id="especialidade"
